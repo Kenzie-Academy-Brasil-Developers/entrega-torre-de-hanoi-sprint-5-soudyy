@@ -1,7 +1,7 @@
 /*Sidny*/
 
 div {
-    height: 40px;
+    height: 8%;
     border-radius: 20px;
     border: 2px solid black;
     box-shadow: 0 2px 5px black;
@@ -9,12 +9,12 @@ div {
 }
 
 #blue {
-    width: 30%;
+    width: 90%;
     background-color: blue;
 }
 
 #yellow {
-    width: 40%;
+    width: 70%;
     background-color: yellow;
 }
 
@@ -24,7 +24,7 @@ div {
 }
 
 #green {
-    width: 60%;
+    width: 30%;
     background-color: green;
 }
 
@@ -33,6 +33,7 @@ div {
 
 
 /*VAGNER*/
+
 main {
     display: flex;
     background-color: aqua;
@@ -43,6 +44,7 @@ main {
 section {
     display: flex;
     flex-direction: column-reverse;
+    align-items: center;
     flex-basis: 33%;
     padding: 20px;
     height: 80vh;
@@ -50,14 +52,13 @@ section {
     margin: 5px;
 }
 
-footer {
-
-}
-
+footer {}
 
 @media (min-width: 600px) {
     main {
         width: 80%;
     }
 }
+
+
 /*VAGNER*/
