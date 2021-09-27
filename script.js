@@ -1,21 +1,27 @@
 /*Sidny*/
 const discs = document.querySelectorAll('div');
 const stickerPos = document.querySelectorAll('section')
+const winningScreen = document.getElementById('winning')
+const playAgain = document.querySelector('button')
 let isSelected = false;
 const main = document.querySelector("main")
 
-console.log(main)
+console.log('quantidade: ', discs.childElementCount)
+console.log(discs.length)
 
-console.log(discs)
 
+function winning() {
 
-/*VAGNER*/
-
-/*VAGNER*/
-
-main.addEventListener('click', teste)
-
-function teste(evt) {
-    if (evt.target == stickerPos)
-        console.log(evt.target)
+    winningScreen.style.display = "flex"
+        // if (discs.childElementCount == 4) {
+        //     console.log("win")
+        // }
 }
+playAgain.addEventListener("click", restartGame)
+
+function restartGame() {
+    winningScreen.style.display = "none"
+}
+/*VAGNER*/
+
+/*VAGNER*/
