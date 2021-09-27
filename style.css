@@ -9,22 +9,22 @@ div {
 }
 
 #blue {
-    width: 200px;
+    width: 30%;
     background-color: blue;
 }
 
 #yellow {
-    width: 300px;
+    width: 40%;
     background-color: yellow;
 }
 
 #red {
-    width: 400px;
+    width: 50%;
     background-color: red;
 }
 
 #green {
-    width: 500px;
+    width: 60%;
     background-color: green;
 }
 
