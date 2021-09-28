@@ -63,8 +63,6 @@ function endGameCondition() {
         win.style.display = "flex"
     } else if (playTimes === 0) {
         lose.style.display = "flex"
-        console.log(lose.style.display)
-        console.log('Derrota')
     }
 
 }
@@ -118,10 +116,10 @@ function moveDisc(evt) {
         }
     }
     endGameCondition()
-    console.log(playQuantity, playTimes)
-
 }
 
-stickPosition.forEach((sticker) =>
-    sticker.addEventListener("click", moveDisc, true)
-);
+stickPosition.forEach((stick) => {
+    if (stick.id === "left" || stick.id === "middle" || stick.id === "right") {
+        stick.addEventListener("click", moveDisc, true);
+    }
+});
