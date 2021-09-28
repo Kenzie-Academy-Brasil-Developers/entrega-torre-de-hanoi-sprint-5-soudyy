@@ -1,6 +1,44 @@
     /*Sidny*/
     
-    #winning {
+    #startGame {
+        text-align: center;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(45, 53, 100);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        text-shadow: 0 5px 5px rgb(0, 6, 15);
+    }
+    
+    #startGame h1 {
+        font-size: 80px;
+    }
+    
+    #startGame h3 {
+        font-size: 40px;
+    }
+    
+    #startGame button {
+        font-size: 20px;
+        font-style: oblique;
+        font-weight: bolder;
+        text-shadow: 0 3px 3px rgb(9, 43, 95);
+        color: white;
+        background-color: rgb(15, 88, 88);
+        border-radius: 4px;
+        border: 5px double rgb(50, 50, 97);
+        margin: 10px 0 10px 0;
+        width: 50%;
+        height: 30%;
+    }
+    
+    #winning,
+    #losing {
         display: none;
         flex-direction: column;
         justify-content: space-evenly;
@@ -15,13 +53,15 @@
         font-size: 200%;
     }
     
-    #winning h1 {
+    #winning h1,
+    #losing h1 {
         align-self: center;
         color: white;
         text-shadow: 3px 3px 5px rgb(91, 149, 204);
     }
     
-    #winning button {
+    #winning button,
+    #losing button {
         background-color: rgb(17, 18, 22);
         box-shadow: 0 3px 3px rgb(25, 172, 152);
         border: 1px dotted rgb(11, 39, 0);
@@ -32,10 +72,27 @@
         font-style: oblique;
     }
     
+    #losing {
+        background-color: rgba(116, 20, 20, 0.637);
+    }
+    
+    #losing h1 {
+        color: rgb(0, 0, 0);
+        text-shadow: 3px 3px 5px rgb(143, 29, 29);
+    }
+    
+    #losing button {
+        background-color: rgb(0, 0, 0);
+        box-shadow: 0 3px 3px rgb(134, 9, 9);
+        color: rgb(221, 221, 221);
+        text-shadow: 3px 3px 5px rgb(117, 22, 22);
+    }
+    
     #blue,
     #red,
     #yellow,
-    #green {
+    #green,
+    #purple {
         height: 8%;
         border-radius: 20px;
         border: 2px solid black;
@@ -62,6 +119,26 @@
         width: 30%;
         background-color: green;
     }
+    
+    #purple {
+        width: 110%;
+        background-color: purple;
+    }
+    
+    #contador {
+        position: absolute;
+        display: none;
+    }
+    
+    #contador p {
+        font-size: 150%;
+        margin-right: 10px;
+    }
+    
+    #reset {
+        display: flex;
+        align-items: center;
+    }
     /*Sidny*/
     /*VAGNER*/
     
@@ -71,7 +148,9 @@
         margin: 0 auto;
     }
     
-    section {
+    #left,
+    #right,
+    #middle {
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
@@ -80,6 +159,7 @@
         height: 80vh;
         background-image: url(assets/img/pole.png);
         background-repeat: no-repeat;
+        background-size: 10% 50%;
         background-position: bottom, center;
         margin: 0 20px -5px;
     }
@@ -95,6 +175,22 @@
     @media (min-width: 600px) {
         main {
             width: 80%;
+        }
+        #startGame {
+            display: flex;
+            align-content: center;
+        }
+        #startGame div {
+            margin: 0 10px 0 10px;
+            width: 70vw;
+            height: 20vh;
+        }
+        #startGame button {
+            margin-left: 10px;
+        }
+        #startGame button:hover {
+            background-color: white;
+            color: black;
         }
     }
     /*VAGNER*/

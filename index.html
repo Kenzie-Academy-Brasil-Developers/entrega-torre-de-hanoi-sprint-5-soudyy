@@ -11,21 +11,35 @@
 
 <body>
     <main>
-        <div id="winning">
-            <h1>Você ganhou</h1>
-            <button>Jogar novamente</button>
-        </div>
-        <section id="left">
-            <div id="blue"></div>
-            <div id="yellow"></div>
-            <div id="red"></div>
-            <div id="green"></div>
+        <section id="startGame">
+            <h1>Torre de Hanoi</h1>
+            <h3>escolha a dificuldade: </h3>
+            <div>
+                <button id="facil">facil</button>
+                <button id="medio">Médio</button>
+                <button id="dificil">Dificil</button>
+            </div>
         </section>
+        <div id="contador">
+            <p>Jogadas disponiveis: </p>
+        </div>
+        <section id="winOrLose">
+            <div id="winning">
+                <h1>Você ganhou</h1>
+                <button>Jogar novamente</button>
+            </div>
+            <div id="losing">
+                <h1>Você perdeu</h1>
+                <button>Jogar novamente</button>
+            </div>
+        </section>
+        <section id="left"></section>
         <section id="middle"></section>
         <section id="right"></section>
     </main>
     <footer>
         <p>Developed by: Sid & Vagner</p>
+        <button id='reset'>Reset</button>
     </footer>
     <script src="script.js"></script>
 </body>
