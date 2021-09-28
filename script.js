@@ -1,29 +1,33 @@
-/*Sidny*/
-const main = document.querySelector("main");
 const startColumn = document.querySelector('#left');
+const endColumn = document.querySelector('#right');
 const startGame = document.querySelector('#startGame');
 const resetGame = document.querySelector('#reset');
+const divPosition = document.querySelector('#winOrLose');
 
 const discs = document.querySelectorAll('div');
-const stickerPos = document.querySelectorAll('section');
+const stickPosition = document.querySelectorAll('section');
 const playAgain = document.querySelectorAll('#winOrLose button');
 const difficulty = document.querySelectorAll('#startGame button');
+const gameState = document.createElement('div')
 const playCounter = document.getElementById('contador')
 const playQuantity = document.createElement('p')
 let playTimes = 1;
-let isSelected = false;
 let startValue = 0;
-console.log(resetGame)
-difficulty.forEach(button => button.addEventListener("click", levelSelect))
+let discQuantity = 0;
+let isSelected = false;
 
+difficulty.forEach(button => button.addEventListener("click", levelSelect))
+const discColors = ['green', 'red', 'yellow', 'blue', 'purple'];
+divPosition.appendChild(gameState)
+    //Seleção de dificuldade de jogo
 function levelSelect(evt) {
-    const discColors = ['green', 'red', 'yellow', 'blue', 'purple'];
-    let discQuantity = 0;
+
+    stickPosition.forEach(stick => stick.id === "left" || stick.id === "middle" || stick.id === "right" ? stick.innerHTML = '' : false)
     let diffButton = evt.target;
 
-    diffButton.id == 'facil' ? discQuantity = 3 : diffButton.id == 'medio' ? discQuantity = 4 : discQuantity = 5
-    diffButton.id == 'facil' ? playTimes = 50 : diffButton.id == 'medio' ? playTimes = 30 : playTimes = 50
-    if (diffButton == evt.target) {
+    diffButton.id === 'facil' ? discQuantity = 3 : diffButton.id === 'medio' ? discQuantity = 4 : discQuantity = 5
+    diffButton.id === 'facil' ? playTimes = 20 : diffButton.id === 'medio' ? playTimes = 25 : playTimes = 50
+    if (diffButton === evt.target) {
         startGame.style.display = "none";
         playCounter.style.display = "flex"
         playQuantity.innerText = playTimes
@@ -35,35 +39,54 @@ function levelSelect(evt) {
             startColumn.appendChild(createDiscs);
         }
     }
+
+}
+//Reinicia o jogo
+playAgain.forEach(button => button.addEventListener('click', restartGame))
+const win = document.getElementById('winning')
+const lose = document.getElementById('losing')
+
+function restartGame() {
+
+    playCounter.style.display = "none"
+    win.style.display = "none"
+    lose.style.display = "none"
+    startGame.style.display = "flex";
+    reset();
+
+
+}
+//Condições de vitoria ou derrota
+function endGameCondition() {
+    if (endColumn.childElementCount === discQuantity) {
+        victory = true
+        win.style.display = "flex"
+    } else if (playTimes === 0) {
+        lose.style.display = "flex"
+        console.log(lose.style.display)
+        console.log('Derrota')
+    }
+
 }
 
-function endGameCondition() {
-    if (playTimes == 40) {
-        const win = document.getElementById('winning')
-        win.style.display = "flex"
-    } else if (playTimes <= 0) {
-        const lose = document.getElementById('losing')
-        lose.style.display = "flex"
-    }
-}
-endGameCondition()
 resetGame.addEventListener("click", reset)
 
+//Reseta o jogo atual
 function reset() {
-
-    console.log('pegou')
+    for (let i = discQuantity; i > 0; i--) {
+        const createDiscs = document.getElementById(discColors[i - 1]);
+        startColumn.appendChild(createDiscs);
+    }
     playTimes = startValue
     playQuantity.innerText = playTimes
 }
-/*Sidny*/
 
 
-/*VAGNER*/
+let select; //captura o ID do disco
+let disco; //captura o ultimo elemento da section
+let discoWidth; //captura o tamanho do disco 
 
-let select;
-let disco;
-let discoWidth;
-
+//Movimenta as peças
 function moveDisc(evt) {
     let element = evt.currentTarget;
 
@@ -78,10 +101,14 @@ function moveDisc(evt) {
             element.appendChild(select);
             select.style.marginBottom = 0;
             isSelected = false;
+            playTimes--
+            playQuantity.innerText = playTimes
         } else if (element.lastElementChild.clientWidth > discoWidth) {
             element.appendChild(select);
             select.style.marginBottom = 0;
             isSelected = false;
+            playTimes--
+            playQuantity.innerText = playTimes
         } else if (element.lastElementChild.clientWidth < discoWidth) {
             select.style.marginBottom = 0;
             isSelected = false;
@@ -90,11 +117,11 @@ function moveDisc(evt) {
             isSelected = false;
         }
     }
+    endGameCondition()
+    console.log(playQuantity, playTimes)
+
 }
 
-stickerPos.forEach((sticker) =>
+stickPosition.forEach((sticker) =>
     sticker.addEventListener("click", moveDisc, true)
 );
-/*VAGNER*/
-
-// main.addEventListener('click', teste)
