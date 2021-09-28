@@ -59,22 +59,42 @@ function reset() {
 
 
 /*VAGNER*/
-stickerPos.forEach(sticker => sticker.addEventListener("click", handlerClick, true));
-let selectedElement;
 
-function handlerClick(evt) {
+let select;
+let disco;
+let discoWidth;
+
+function moveDisc(evt) {
     let element = evt.currentTarget;
 
-    // console.log(element);
-
-    if (!isSelected && element.tagName === "SECTION" && element.hasChildNodes()) {
-        const disco = evt.currentTarget.lastElementChild.id
-        const select = document.getElementById(disco);
-        select.style.marginBottom = (20 + "px");
+    if (!isSelected && element.tagName === "SECTION" && element.hasChildNodes() && element.lastElementChild !== null) {
+        disco = element.lastElementChild.id;
+        discoWidth = element.lastElementChild.clientWidth;
+        select = document.getElementById(disco);
+        select.style.marginBottom = 20 + "px";
         isSelected = true;
-        selectedElement = evt.currentTarget.lastElementChild.id;
+    } else if (isSelected && element.tagName === "SECTION") {
+        if (!element.hasChildNodes() || element.lastElementChild === null) {
+            element.appendChild(select);
+            select.style.marginBottom = 0;
+            isSelected = false;
+        } else if (element.lastElementChild.clientWidth > discoWidth) {
+            element.appendChild(select);
+            select.style.marginBottom = 0;
+            isSelected = false;
+        } else if (element.lastElementChild.clientWidth < discoWidth) {
+            select.style.marginBottom = 0;
+            isSelected = false;
+        } else if (element.lastElementChild.id === disco) {
+            select.style.marginBottom = 0;
+            isSelected = false;
+        }
     }
 }
+
+stickerPos.forEach((sticker) =>
+    sticker.addEventListener("click", moveDisc, true)
+);
 /*VAGNER*/
 
 // main.addEventListener('click', teste)
