@@ -1,4 +1,5 @@
-const startColumn = document.querySelector('#left');
+const gamePoint = document.getElementById('main')
+
 const endColumn = document.querySelector('#right');
 const startGame = document.querySelector('#startGame');
 const resetGame = document.querySelector('#reset');
@@ -18,6 +19,7 @@ let isSelected = false;
 
 difficulty.forEach(button => button.addEventListener("click", levelSelect))
 const discColors = ['green', 'red', 'yellow', 'blue', 'purple'];
+const pillarsTag = ['left', 'middle', 'right']
 divPosition.appendChild(gameState)
     //Seleção de dificuldade de jogo
 function levelSelect(evt) {
@@ -27,6 +29,12 @@ function levelSelect(evt) {
 
     diffButton.id === 'facil' ? discQuantity = 3 : diffButton.id === 'medio' ? discQuantity = 4 : discQuantity = 5
     diffButton.id === 'facil' ? playTimes = 20 : diffButton.id === 'medio' ? playTimes = 25 : playTimes = 50
+    for (let i = 0; i < pillarsTag.length; i++) {
+        const createPillars = document.createElement('section')
+        createPillars.id = pillarsTag[i]
+        gamePoint.appendChild(createPillars)
+    }
+    const startColumn = document.querySelector('#left');
     if (diffButton === evt.target) {
         startGame.style.display = "none";
         playCounter.style.display = "flex"
@@ -59,12 +67,9 @@ function restartGame() {
 //Condições de vitoria ou derrota
 function endGameCondition() {
     if (endColumn.childElementCount === discQuantity) {
-        victory = true
         win.style.display = "flex"
     } else if (playTimes === 0) {
         lose.style.display = "flex"
-        console.log(lose.style.display)
-        console.log('Derrota')
     }
 
 }
@@ -88,14 +93,16 @@ let discoWidth; //captura o tamanho do disco
 
 //Movimenta as peças
 function moveDisc(evt) {
+    console.log("current", evt.currentTarget)
+    console.log("target", evt.target)
     let element = evt.currentTarget;
-
     if (!isSelected && element.tagName === "SECTION" && element.hasChildNodes() && element.lastElementChild !== null) {
         disco = element.lastElementChild.id;
         discoWidth = element.lastElementChild.clientWidth;
         select = document.getElementById(disco);
         select.style.marginBottom = 20 + "px";
         isSelected = true;
+
     } else if (isSelected && element.tagName === "SECTION") {
         if (!element.hasChildNodes() || element.lastElementChild === null) {
             element.appendChild(select);
@@ -118,7 +125,6 @@ function moveDisc(evt) {
         }
     }
     endGameCondition()
-    console.log(playQuantity, playTimes)
 
 }
 

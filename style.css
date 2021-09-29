@@ -1,5 +1,10 @@
     /*Sidny*/
     
+    #game {
+        display: flex;
+        justify-content: space-evenly;
+    }
+    
     #startGame {
         text-align: center;
         color: white;
@@ -157,6 +162,7 @@
         flex-basis: 33%;
         /* padding: 20px; */
         height: 80vh;
+        width: 20vw;
         background-image: url(assets/img/pole.png);
         background-repeat: no-repeat;
         background-size: 10% 50%;
