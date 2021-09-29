@@ -1,12 +1,12 @@
 const gamePoint = document.getElementById('game')
 
-const endColumn = document.querySelector('#right');
+let endColumn = document.querySelector('#right');
 const startGame = document.querySelector('#startGame');
 const resetGame = document.querySelector('#reset');
 const divPosition = document.querySelector('#winOrLose');
 let startColumn = document.querySelector('#left');
 const discs = document.querySelectorAll('div');
-const stickPosition = document.querySelectorAll('section');
+let stickPosition = document.querySelectorAll('section');
 const playAgain = document.querySelectorAll('#winOrLose button');
 const difficulty = document.querySelectorAll('#startGame button');
 const gameState = document.createElement('div')
@@ -25,6 +25,7 @@ divPosition.appendChild(gameState)
 function levelSelect(evt) {
 
     stickPosition.forEach(stick => stick.id === "left" || stick.id === "middle" || stick.id === "right" ? stick.innerHTML = '' : false)
+    gamePoint.innerHTML = "";
     let diffButton = evt.target;
 
     diffButton.id === 'facil' ? discQuantity = 3 : diffButton.id === 'medio' ? discQuantity = 4 : discQuantity = 5
@@ -34,6 +35,7 @@ function levelSelect(evt) {
         createPillars.id = pillarsTag[i]
         gamePoint.appendChild(createPillars)
     }
+
     startColumn = document.querySelector('#left');
     if (diffButton === evt.target) {
         startGame.style.display = "none";
@@ -47,7 +49,9 @@ function levelSelect(evt) {
             startColumn.appendChild(createDiscs);
         }
     }
-
+    stickPosition = document.querySelectorAll('section');
+    endColumn = document.querySelector('#right');
+    controlMoviment();
 }
 //Reinicia o jogo
 playAgain.forEach(button => button.addEventListener('click', restartGame))
@@ -93,8 +97,6 @@ let discoWidth; //captura o tamanho do disco
 
 //Movimenta as peças
 function moveDisc(evt) {
-    console.log("current", evt.currentTarget)
-    console.log("target", evt.target)
     let element = evt.currentTarget;
     if (!isSelected && element.tagName === "SECTION" && element.hasChildNodes() && element.lastElementChild !== null) {
         disco = element.lastElementChild.id;
@@ -127,8 +129,10 @@ function moveDisc(evt) {
     endGameCondition()
 }
 
-stickPosition.forEach((stick) => {
-    if (stick.id === "left" || stick.id === "middle" || stick.id === "right") {
-        stick.addEventListener("click", moveDisc, true);
-    }
-});
+function controlMoviment() {
+    stickPosition.forEach((stick) => {
+        if (stick.id === "left" || stick.id === "middle" || stick.id === "right") {
+            stick.addEventListener("click", moveDisc, true);
+        }
+    });
+}
