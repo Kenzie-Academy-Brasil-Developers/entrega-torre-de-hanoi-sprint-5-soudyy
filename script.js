@@ -1,10 +1,10 @@
-const gamePoint = document.getElementById('main')
+const gamePoint = document.getElementById('game')
 
 const endColumn = document.querySelector('#right');
 const startGame = document.querySelector('#startGame');
 const resetGame = document.querySelector('#reset');
 const divPosition = document.querySelector('#winOrLose');
-
+let startColumn = document.querySelector('#left');
 const discs = document.querySelectorAll('div');
 const stickPosition = document.querySelectorAll('section');
 const playAgain = document.querySelectorAll('#winOrLose button');
@@ -34,7 +34,7 @@ function levelSelect(evt) {
         createPillars.id = pillarsTag[i]
         gamePoint.appendChild(createPillars)
     }
-    const startColumn = document.querySelector('#left');
+    startColumn = document.querySelector('#left');
     if (diffButton === evt.target) {
         startGame.style.display = "none";
         playCounter.style.display = "flex"
