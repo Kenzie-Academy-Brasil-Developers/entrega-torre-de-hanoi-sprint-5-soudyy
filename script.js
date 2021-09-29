@@ -125,9 +125,10 @@ function moveDisc(evt) {
         }
     }
     endGameCondition()
-
 }
 
-stickPosition.forEach((sticker) =>
-    sticker.addEventListener("click", moveDisc, true)
-);
+stickPosition.forEach((stick) => {
+    if (stick.id === "left" || stick.id === "middle" || stick.id === "right") {
+        stick.addEventListener("click", moveDisc, true);
+    }
+});
